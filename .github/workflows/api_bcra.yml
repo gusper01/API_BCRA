@@ -28,7 +28,7 @@ jobs:
         pip install requests certifi plotly pandas
 
     - name: Run the script to generate the graph
-      run: python .scripts/api5.py
+      run: python scripts/api5.py
     - name: List contents of ./docs
       run: ls -la ./docs  
     - name: Commit and push changes
