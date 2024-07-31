@@ -30,11 +30,11 @@ jobs:
     - name: Run the script to generate the graph
       run: python scripts/api5.py
     - name: List contents of ./docs
-      run: ls -la ./docs  
+      run: ls -la /docs  
     - name: Commit and push changes
       run: |
         git config --global user.name 'github-actions[bot]'
         git config --global user.email '41898282+github-actions[bot]@users.noreply.github.com'
-        git add index.html
+        git add /docs/index.html
         git commit -m "Actualizar gráfico"
         git push
