@@ -97,6 +97,6 @@ fig.update_layout(
 )
 
 # Guardar el gráfico en un archivo HTML
-fig.write_html('reservas_internacionales.html')
+fig.write_html('.docs/reservas_internacionales.html')
 
 print("El gráfico se ha guardado como 'reservas_internacionales.html'")
