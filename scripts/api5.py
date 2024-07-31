@@ -66,13 +66,13 @@ fig.add_trace(go.Scatter(
 ))
 
 # Añadir anotaciones (ejemplo de fechas importantes)
-annotations = [
-    dict(x='2023-08-23', y=29004, xref='x', yref='y',
-         text='Aumento significativo', showarrow=True, arrowhead=2, ax=0, ay=-40),
-    dict(x='2023-07-31', y=24092, xref='x', yref='y',
-         text='Baja significativa', showarrow=True, arrowhead=2, ax=0, ay=-40)
-]
-fig.update_layout(annotations=annotations)
+# annotations = [
+#     dict(x='2023-08-23', y=29004, xref='x', yref='y',
+#          text='Aumento significativo', showarrow=True, arrowhead=2, ax=0, ay=-40),
+#     dict(x='2023-07-31', y=24092, xref='x', yref='y',
+#          text='Baja significativa', showarrow=True, arrowhead=2, ax=0, ay=-40)
+# ]
+# fig.update_layout(annotations=annotations)
 
 # Añadir selector de rango de fechas
 fig.update_xaxes(
@@ -89,7 +89,7 @@ fig.update_xaxes(
 
 # Configurar el layout del gráfico
 fig.update_layout(
-    title='Evolución de las Reservas Internacionales',
+    title='Plot - Evolución de las Reservas Internacionales',
     xaxis_title='Fecha',
     yaxis_title='Valor',
     template='plotly_white',
