@@ -18,10 +18,10 @@ jobs:
 
     steps:
     - name: Checkout repository
-      uses: actions/checkout@v4
+      uses: actions/checkout@v2
 
     - name: Set up Python
-      uses: actions/setup-python@v4
+      uses: actions/setup-python@v2
       with:
         python-version: '3.9'
 
@@ -32,14 +32,7 @@ jobs:
     - name: Create .nojekyll file
       run: echo "" > ./docs/.nojekyll
   
-    - name: Verify .nojekyll file
-      run: |
-          if [ ! -f ./docs/.nojekyll ]; then
-            echo ".nojekyll file is missing!"
-            exit 1
-          fi
-          echo ".nojekyll file is present."
-  
+     
     - name:  List files in docs
       run: ls -la ./docs
     - name: Run the script to generate the graph
