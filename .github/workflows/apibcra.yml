@@ -1,4 +1,4 @@
-name: Actualizar gráfico diariamente
+name: Actualizar gráfico x dia
 
 on:
   push:
