@@ -30,12 +30,15 @@ jobs:
         python -m pip install --upgrade pip
         pip install requests certifi plotly pandas
 
+     - name: Create .nojekyll file
+      run: echo "" > ./docs/.nojekyll
+
     - name: Run the script to generate the graph
       run: python scripts/api5.py
 
     - name: Create .nojekyll file
       run: echo "" > ./docs/.nojekyll
-      
+
     - name: List contents of ./docs
       run: ls -la ./docs  
 
