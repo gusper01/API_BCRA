@@ -29,7 +29,19 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         pip install requests  plotly pandas
-
+    - name: Create .nojekyll file
+      run: echo "" > ./docs/.nojekyll
+  
+    - name: Verify .nojekyll file
+      run: |
+          if [ ! -f ./docs/.nojekyll ]; then
+            echo ".nojekyll file is missing!"
+            exit 1
+          fi
+          echo ".nojekyll file is present."
+  
+    - name:  List files in docs
+      run: ls -la ./docs
     - name: Run the script to generate the graph
       run: python scripts/api5.py
 
