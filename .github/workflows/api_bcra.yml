@@ -8,6 +8,9 @@ on:
     - cron: '0 20 * * *'  # Esto configura la acción para que se ejecute todos los días a las 20:00 UTC
   workflow_dispatch:  # Habilitar ejecuciones manuales
 
+permissions:
+  contents: write
+  id-token: write
 
 jobs:
   build:
@@ -31,10 +34,10 @@ jobs:
       run: python scripts/api5.py
     - name: List contents of ./docs
       run: ls -la ./docs  
-    - name: Commit and push changes
-      run: |
-        git config --global user.name 'github-actions[bot]'
-        git config --global user.email '41898282+github-actions[bot]@users.noreply.github.com'
-        git add ./docs/reservas_internacionales.html
-        git commit -m "Actualizar gráfico"
-        git push
+
+    - name: Deploy to GitHub Pages
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_branch: gh-pages
+        publish_dir: ./docs
