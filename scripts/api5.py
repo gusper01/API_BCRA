@@ -9,8 +9,8 @@ def obtener_datos(desde, hasta):
     #url = f"https://api.bcra.gob.ar/estadisticas/v3.0/monetarias/1/{desde}/{hasta}"
     url = f"https://api.bcra.gob.ar/estadisticas/v3.0/monetarias/1?desde={desde}&hasta={hasta}"
 
-    #response = requests.get(url, verify=False)
-    response = requests.get(url)
+    response = requests.get(url, verify=False)
+    #response = requests.get(url)
     if response.status_code == 200:
         return response.json()['results']
     else:
