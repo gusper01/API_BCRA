@@ -6,7 +6,7 @@ from datetime import datetime
 
 # Función para obtener datos de la API
 def obtener_datos(desde, hasta):
-    url = f"https://api.bcra.gob.ar/estadisticas/v2.0/DatosVariable/1/{desde}/{hasta}"
+    url = f"https://api.bcra.gob.ar/estadisticas/v3.0/DatosVariable/1/{desde}/{hasta}"
     response = requests.get(url, verify=False)
     if response.status_code == 200:
         return response.json()['results']
@@ -17,6 +17,7 @@ def obtener_datos(desde, hasta):
 # Obtener datos para 2022 y 2023
 datos_2022 = obtener_datos('2022-01-01', '2022-12-31')
 datos_2023 = obtener_datos('2023-01-01', '2023-12-31')
+datos_2024 = obtener_datos('2024-01-01', '2024-12-31')
 
 # Obtener datos para el año actual (desde enero hasta hoy)
 hoy = datetime.today().strftime('%Y-%m-%d')
@@ -26,11 +27,13 @@ print(hoy)
 # Crear DataFrames con los datos
 df_2022 = pd.DataFrame(datos_2022)
 df_2023 = pd.DataFrame(datos_2023)
+df_2024 = pd.DataFrame(datos_2024)
 df_actuales = pd.DataFrame(datos_actuales)
 
 # Convertir la columna 'fecha' a datetime
 df_2022['fecha'] = pd.to_datetime(df_2022['fecha'])
 df_2023['fecha'] = pd.to_datetime(df_2023['fecha'])
+df_2024['fecha'] = pd.to_datetime(df_2024['fecha'])
 df_actuales['fecha'] = pd.to_datetime(df_actuales['fecha'])
 print(df_actuales.tail(10))
 # Crear el gráfico
@@ -56,6 +59,14 @@ fig.add_trace(go.Scatter(
     hovertemplate='Fecha: %{x}<br>Valor: %{y:.2f}<extra></extra>'
 ))
 
+fig.add_trace(go.Scatter(
+    x=df_2024['fecha'],
+    y=df_2024['valor'],
+    mode='lines',
+    name='Reservas Internacionales 2023',
+    line=dict(color='yellow', width=4),
+    hovertemplate='Fecha: %{x}<br>Valor: %{y:.2f}<extra></extra>'
+))
 # Añadir la línea de datos actuales
 fig.add_trace(go.Scatter(
     x=df_actuales['fecha'],
